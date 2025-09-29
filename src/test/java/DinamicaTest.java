@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class FuerzaBrutaTest {
+public class DinamicaTest {
 
     @Test
     void resolver_debeRetornarNull_porAhora() {
-        FuerzaBruta fb = new FuerzaBruta();
-        Object res = fb.resolver(new Finca());
+        Dinamica algoritmo = new Dinamica();
+        Object res = algoritmo.resolver(new Finca());
         assertNull(res);
     }
 }
