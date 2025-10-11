@@ -12,7 +12,8 @@ public class FuerzaBruta {
     public Object resolver() {
         Finca finca;
         try {
-            finca = Finca.cargarDesdeArchivo("Finca1.txt");
+            String ruta = getClass().getClassLoader().getResource("Finca1.txt").getPath();
+            finca = Finca.cargarDesdeArchivo(ruta);
         } catch (Exception e) {
             throw new RuntimeException("Error leyendo el archivo: " + e.getMessage());
         }
@@ -22,8 +23,8 @@ public class FuerzaBruta {
             fincas.add(Arrays.asList(t.getTs_i(), t.getrReg(), t.getPrio()));
         }
 
-        System.out.println("Fincas originales:");
-        System.out.println(fincas);
+//        System.out.println("Fincas originales:");
+//        System.out.println(fincas);
 
         // Generar todas las permutaciones posibles
         List<List<List<Integer>>> permutaciones = generarPermutaciones(fincas);
@@ -35,8 +36,8 @@ public class FuerzaBruta {
         for (List<List<Integer>> perm : permutaciones) {
             int costo = finca.calcularCostoRiego(perm);
 
-            System.out.println("\nOrden: " + perm);
-            System.out.println("Costo total: " + costo);
+//            System.out.println("\nOrden: " + perm);
+//            System.out.println("Costo total: " + costo);
 
             if (costo < mejorCosto) {
                 mejorCosto = costo;
