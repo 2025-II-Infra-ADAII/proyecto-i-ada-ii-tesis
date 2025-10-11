@@ -1,5 +1,8 @@
 package edu.univalle.riegooptimo.modelo;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -36,31 +39,30 @@ public class Finca {
      * CRF_Π = Σ(i=0 to n-1) CRF_Π[i]
      * donde CRF_Π[i] = pᵢ * max(0, (t_Πᵢ + trᵢ) - tsᵢ)
      */
-    public double calcularCostoRiego(int[] programacion) {
-        if (programacion.length != tablones.size()) {
-            throw new IllegalArgumentException("La programación debe tener el mismo tamaño que el número de tablones");
+    public int calcularCostoRiego(List<List<Integer>> perm) {
+        int diaActual = 0;
+        int costoTotal = 0;
+
+        for (List<Integer> tablon : perm) {
+            int supervivencia = tablon.get(0);
+            int tiempoRiego = tablon.get(1);
+            int prioridad = tablon.get(2);
+
+            int diaInicio = diaActual;
+            int diaFin = diaInicio + tiempoRiego;
+            diaActual = diaFin; // se actualiza para el siguiente tablón
+
+            int retraso = Math.max(0, diaFin - supervivencia);
+            int penalizacion = prioridad * retraso;
+            costoTotal += penalizacion;
+
+//            System.out.println("  Tablón " + tablon +
+//                    " | Empieza: " + diaInicio +
+//                    " | Termina: " + diaFin +
+//                    " | Retraso: " + retraso +
+//                    " | Penalización: " + penalizacion);
         }
-        
-        double costoTotal = 0.0;
-        int tiempoInicio = 0;
-        
-        for (int j = 0; j < programacion.length; j++) {
-            int indiceTablon = programacion[j];
-            Tablon tablon = tablones.get(indiceTablon);
-            
-            // Tiempo de finalización del riego para este tablón
-            int tiempoFinalizacion = tiempoInicio + tablon.getrReg();
-            
-            // Costo por sufrimiento: pᵢ * max(0, (t_Πᵢ + trᵢ) - tsᵢ)
-            int sufrimiento = Math.max(0, tiempoFinalizacion - tablon.getTs_i());
-            double costoTablon = tablon.getPrio()* sufrimiento;
-            
-            costoTotal += costoTablon;
-            
-            // El siguiente tablón empieza cuando termina este
-            tiempoInicio = tiempoFinalizacion;
-        }
-        
+
         return costoTotal;
     }
     
@@ -85,6 +87,36 @@ public class Finca {
      */
     public boolean estaVacia() {
         return tablones.isEmpty();
+    }
+
+    public static Finca cargarDesdeArchivo(String rutaArchivo) throws IOException {
+        Finca finca = new Finca();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea = br.readLine();
+            if (linea == null)
+                throw new IOException("El archivo está vacío.");
+
+            int n = Integer.parseInt(linea.trim());
+
+            for (int i = 0; i < n; i++) {
+                linea = br.readLine();
+                if (linea == null)
+                    throw new IOException("Faltan líneas para completar los " + n + " tablones.");
+
+                String[] partes = linea.split(",");
+                if (partes.length != 3)
+                    throw new IOException("Formato inválido en la línea " + (i + 2) + ": " + linea);
+
+                int ts = Integer.parseInt(partes[0].trim());
+                int tr = Integer.parseInt(partes[1].trim());
+                int p = Integer.parseInt(partes[2].trim());
+
+                finca.agregarTablon(new Tablon(ts, tr, p));
+            }
+        }
+
+        return finca;
     }
     
     @Override
