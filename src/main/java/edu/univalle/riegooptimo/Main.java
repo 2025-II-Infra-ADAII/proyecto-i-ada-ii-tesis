@@ -12,7 +12,7 @@ public class Main {
         try {
             // Cargar finca desde archivo
             String ruta = Main.class.getClassLoader()
-                                   .getResource("Finca1.txt")
+                                   .getResource("Finca4.txt")
                                    .getPath();
             Finca finca = Finca.cargarDesdeArchivo(ruta);
             
@@ -95,7 +95,7 @@ public class Main {
             double tiempoDP = (finDP - inicioDP) / 1_000_000.0;
             
             System.out.printf("  Fuerza Bruta: %.3f ms%n", tiempoFB);
-            System.out.printf("  Prog. Dinámica: %.3f ms%n", tiempoDP);
+            System.out.printf("  Prog. Dinamica: %.3f ms%n", tiempoDP);
             System.out.printf("  Speedup: %.2fx%n", tiempoFB / tiempoDP);
             
         } catch (Exception e) {
