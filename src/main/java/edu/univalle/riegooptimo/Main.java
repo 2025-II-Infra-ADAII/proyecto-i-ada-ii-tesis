@@ -9,21 +9,39 @@ import edu.univalle.riegooptimo.modelo.Tablon;
 import java.util.List;
 
 import javax.sound.sampled.SourceDataLine;
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // Cargar finca desde archivo
-            String ruta = Main.class.getClassLoader()
-                                   .getResource("Finca3.txt")
-                                   .getPath();
+            // ==========================================
+            // SECCIÓN: SELECCIÓN DE ARCHIVO DE ENTRADA
+            // ==========================================
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccione el archivo de la finca (.txt)");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+            // Mostrar el diálogo y capturar la respuesta
+            int seleccion = fileChooser.showOpenDialog(null);
+
+            if (seleccion != JFileChooser.APPROVE_OPTION) {
+                System.out.println("Operación cancelada por el usuario.");
+                return; // salir del programa
+            }
+
+            // Obtener la ruta del archivo seleccionado
+            String ruta = fileChooser.getSelectedFile().getAbsolutePath();
+
+            // Cargar la finca desde el archivo
             Finca finca = Finca.cargarDesdeArchivo(ruta);
-            
-            
-            System.out.println("║   PROBLEMA DE RIEGO OPTIMO - SOLUCIONES   ║");
-            System.out.println();
+
+            System.out.println("Archivo cargado correctamente: " + ruta);
+            System.out.println("═══════════════════════════════════════════════");
+            System.out.println("║   PROBLEMA DE RIEGO ÓPTIMO - SOLUCIONES    ║");
+            System.out.println("═══════════════════════════════════════════════\n");
             System.out.println(finca);
-            
+
+
             // ==========================================
             // 1. FUERZA BRUTA
             // ==========================================
