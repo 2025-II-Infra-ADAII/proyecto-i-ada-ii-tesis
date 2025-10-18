@@ -2,10 +2,13 @@ package edu.univalle.riegooptimo;
 
 import edu.univalle.riegooptimo.algoritmos.Dinamica;
 import edu.univalle.riegooptimo.algoritmos.FuerzaBruta;
+import edu.univalle.riegooptimo.algoritmos.Voraz;
 import edu.univalle.riegooptimo.modelo.Finca;
 import edu.univalle.riegooptimo.modelo.Tablon;
 
 import java.util.List;
+
+import javax.sound.sampled.SourceDataLine;
 
 public class Main {
     public static void main(String[] args) {
@@ -83,6 +86,30 @@ public class Main {
             } else {
                 System.out.println("  Estado: Valimos monda");
             }
+
+            // ==========================================
+            // 1. ALGORITMO VORAZ (WSPT)
+            // ==========================================
+            System.out.println("\n" + "═".repeat(50));
+            System.out.println("1. ALGORITMO VORAZ - WSPT");
+            System.out.println("═".repeat(50));
+            
+            Voraz voraz = new Voraz();
+
+            long inicioVoraz = System.nanoTime();
+            Voraz.Resultado resultadoVoraz = voraz.resolver(finca);
+            long finVoraz = System.nanoTime();
+            
+            System.out.println("\nResultado:");
+            System.out.println(resultadoVoraz);
+            System.out.printf("Tiempo de ejecución: %.3f ms%n",
+                            (finVoraz - inicioVoraz) / 1_000_000.0);
+
+            //--------------------------------------------------------
+
+
+
+
             
             // ==========================================
             // 3. COMPARACIÓN DE RESULTADOS
@@ -93,11 +120,14 @@ public class Main {
             
             double tiempoFB = (finFB - inicioFB) / 1_000_000.0;
             double tiempoDP = (finDP - inicioDP) / 1_000_000.0;
+            double tiempoVoraz = (finVoraz - inicioVoraz) / 1_000_000.0;
             
-            System.out.printf("  Fuerza Bruta: %.3f ms%n", tiempoFB);
-            System.out.printf("  Prog. Dinamica: %.3f ms%n", tiempoDP);
-            System.out.printf("  Speedup: %.2fx%n", tiempoFB / tiempoDP);
-            
+            System.out.printf(" Fuerza Bruta: %.3f ms%n", tiempoFB);
+            System.out.printf(" Prog. Dinamica: %.3f ms%n", tiempoDP);
+            System.out.printf(" Voraz: %.3f ms%n", tiempoVoraz);
+            System.out.printf("  Speedup FB VS DP: %.2fx%n", tiempoFB / tiempoDP);
+            System.out.printf("  Speedup FB VS Voraz: %.2fx%n", tiempoFB / tiempoVoraz);
+
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
