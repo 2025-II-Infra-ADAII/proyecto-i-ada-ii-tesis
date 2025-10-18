@@ -63,12 +63,12 @@ public class Dinamica {
         List<Tablon> tablones = finca.getTablones();
         int n = tablones.size();
         
-        // Validar que n no sea demasiado grande (máximo 20 para evitar overflow)
-        if (n > 20) {
+        // Validar que n no sea demasiado grande
+        /*if (n > 20) {
             throw new IllegalArgumentException(
                 "Demasiados tablones para DP (" + n + "). Máximo recomendado: 20"
             );
-        }
+        }*/
         
         // DP[mask] = estado con costo y tiempo acumulado
         Map<Integer, Estado> dp = new HashMap<>();
@@ -147,6 +147,4 @@ public class Dinamica {
         
         return new Resultado(permutacion, costoOptimo);
     }
-    
-   
 }
