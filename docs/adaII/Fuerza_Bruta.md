@@ -4,7 +4,7 @@
 
 El algoritmo de fuerza bruta explora todas las permutaciones posibles del orden en que se riegan los tablones de una finca. Para cada orden se calcula el costo total de riego y se selecciona la permutación con el menor costo. Es simple y garantiza la solución óptima, aunque es exponencial en el número de tablones.
 
----
+´´´ 
 
 ## Estructura del problema
 

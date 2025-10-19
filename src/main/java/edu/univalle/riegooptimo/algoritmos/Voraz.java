@@ -37,6 +37,7 @@ public class Voraz {
             this.p = p;
             this.ratio = (double) p / tr;  // Ratio WSPT: prioridad / tiempo
         }
+
     }
     
     /**
@@ -95,7 +96,11 @@ public class Voraz {
             }
             return Integer.compare(a.ts, b.ts); // Ascendente (desempate)
         });
-        
+//        for (TablonConRatio r : tablonesConRatio) {
+//            System.out.printf("idx=%d ratio=%.3f ts=%d tr=%d p=%d%n",
+//                    r.indice, r.ratio, r.ts, r.tr, r.p);
+//        }
+
         // Extraer permutación ordenada
         int[] permutacion = new int[n];
         for (int i = 0; i < n; i++) {
