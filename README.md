@@ -14,7 +14,7 @@
 | Jhojan Serna Henao         | 2259504 | Colaborador | jhojan.serna@correounivalle.edu.co |
 | Edwar Yamir Forero Blanco  | 2559741 | Colaborador | edwar.forero@correounivalle.edu.co |
 | Faber Alexis Solis Gamboa  | 2559753 | Colaborador | faber.solis@correounivalle.edu.co  |
-| Juan Diego Escobar Triviño |         | Colaborador | juan.escobar.trivino@correounivalle.edu.co          |
+| Juan Diego Escobar Triviño | 2359393 | Colaborador | juan.escobar.trivino@correounivalle.edu.co          |
 
 ---
 
