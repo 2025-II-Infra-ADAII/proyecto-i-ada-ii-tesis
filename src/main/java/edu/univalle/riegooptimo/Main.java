@@ -54,6 +54,8 @@ public class Main {
             Object resultadoFB = fb.resolver(finca);
             long finFB = System.nanoTime();
 
+            System.out.println("\nResultado:");
+            System.out.println(resultadoFB);
             System.out.printf("Tiempo de ejecucion: %.3f ms%n",
                             (finFB - inicioFB) / 1_000_000.0);
             
