@@ -9,12 +9,12 @@
 
 ## 👥 Integrantes del Grupo
 
-| Nombre Completo           | Código  | Rol          | Correo Electrónico                 |
-|---------------------------|---------|--------------|------------------------------------|
-| Jhojan Serna Henao        | 2259504 | Colaborador | [jhojan.serna@correounivalle.edu.co] |
-| Edwar Yamir Forero Blanco | 2559741  | Colaborador  | edwar.forero@correounivalle.edu.co |
-| Faber Alexis Solis Gamboa |   | [Colaborador] | [correo3@institucion.edu]          |
-|  |   | [Colaborador] | [correo3@institucion.edu]          |
+| Nombre Completo            | Código  | Rol         | Correo Electrónico                 |
+|----------------------------|---------|-------------|------------------------------------|
+| Jhojan Serna Henao         | 2259504 | Colaborador | jhojan.serna@correounivalle.edu.co |
+| Edwar Yamir Forero Blanco  | 2559741 | Colaborador | edwar.forero@correounivalle.edu.co |
+| Faber Alexis Solis Gamboa  | 2559753 | Colaborador | faber.solis@correounivalle.edu.co  |
+| Juan Diego Escobar Triviño |         | Colaborador | juan.escobar.trivino@correounivalle.edu.co          |
 
 ---
 
@@ -45,4 +45,4 @@ La documentación esta dividida en 4 Markdown:
   - [Fuerza_Bruta](docs/adaII/Fuerza_Bruta.md) contiene la descripción de la implementación del algoritmo de fuerza bruta.
   - [Dinamica](docs/adaII/Dinamica.md) contiene la descripción de la implementación del algoritmo de programación dinámica.
   - [SolVoraz](docs/adaII/SolVoraz.md) contiene la descripción de la implementación del algoritmo voraz.
-  - [complejidades](docs/adaII/complejidades.md) contiene el análisis de complejidades temporales y espaciales de los algoritmos implementados.
+  
